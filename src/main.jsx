@@ -318,8 +318,8 @@ function WorksSection({ onSelectProject }) {
   const currentCardNum = String(activeIndex + 1).padStart(2, '0');
   const totalCardsNum = String(works.length).padStart(2, '0');
 
-  const progressFillWidth = hoveredIndex !== null 
-    ? ((hoveredIndex + 1) / works.length) * 100 
+  const progressFillWidth = hoveredIndex !== null
+    ? ((hoveredIndex + 1) / works.length) * 100
     : Math.max(25, scrollProgress);
 
   return (
@@ -352,8 +352,8 @@ function WorksSection({ onSelectProject }) {
       <div className="works-scroll-container">
         <div className="works-scroll-track" ref={scrollRef}>
           {works.map((work, index) => (
-            <article 
-              className="work-card" 
+            <article
+              className="work-card"
               key={work.title}
               onClick={() => onSelectProject(work.slug)}
               onMouseEnter={() => setHoveredIndex(index)}
@@ -559,8 +559,8 @@ function CertificationsSection() {
 
       <div className="cert-list">
         {certifications.map((cert, index) => (
-          <article 
-            className="cert-card" 
+          <article
+            className="cert-card"
             key={cert.title}
             onClick={() => setSelectedCert(cert)}
             tabIndex={0}
@@ -596,15 +596,15 @@ function CertificationsSection() {
       </div>
 
       {selectedCert && (
-        <div 
-          className="cert-modal-overlay" 
+        <div
+          className="cert-modal-overlay"
           onClick={() => setSelectedCert(null)}
           role="dialog"
           aria-modal="true"
           aria-labelledby="cert-modal-title"
         >
-          <button 
-            className="cert-modal-close" 
+          <button
+            className="cert-modal-close"
             onClick={() => setSelectedCert(null)}
             aria-label="Close certificate modal"
           >
@@ -619,9 +619,9 @@ function CertificationsSection() {
 
             <div className="cert-modal-body">
               {selectedCert.image ? (
-                <img 
-                  src={selectedCert.image} 
-                  alt={`${selectedCert.title} Certificate`} 
+                <img
+                  src={selectedCert.image}
+                  alt={`${selectedCert.title} Certificate`}
                   className="cert-modal-img"
                 />
               ) : (
@@ -1221,18 +1221,18 @@ function LustreCaseStudy({ onBack, onContact, onSelectProject }) {
           <div className="pdf-viewer-container">
             <div className="pdf-viewer-header">
               <span className="pdf-title-tag">LUSTRE KEY SCREENS.pdf</span>
-              <a 
-                href="/LUSTRE KEY SCREENS.pdf" 
-                target="_blank" 
-                rel="noopener noreferrer" 
+              <a
+                href="/LUSTRE KEY SCREENS.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="pdf-open-link"
               >
                 Open Fullscreen <ArrowUpRight size={16} />
               </a>
             </div>
             <div className="pdf-frame-wrapper">
-              <iframe 
-                src="/LUSTRE KEY SCREENS.pdf#toolbar=1&navpanes=0&scrollbar=1" 
+              <iframe
+                src="/LUSTRE KEY SCREENS.pdf#toolbar=1&navpanes=0&scrollbar=1"
                 title="LUSTRE Key Screens PDF"
                 className="pdf-embed-frame"
               />
@@ -1432,8 +1432,8 @@ function LakbayCaseStudy({ onBack, onContact, onSelectProject }) {
           <div className="lakbay-screens-gallery">
             <div className="lakbay-gallery-grid">
               {lakbayScreens.map((screen, idx) => (
-                <div 
-                  className="lakbay-gallery-card clickable-image-card" 
+                <div
+                  className="lakbay-gallery-card clickable-image-card"
                   key={screen.id}
                   onClick={() => setPreviewIndex(idx)}
                   tabIndex={0}
@@ -1477,7 +1477,7 @@ function LakbayCaseStudy({ onBack, onContact, onSelectProject }) {
                 </h3>
               </div>
 
-              <div 
+              <div
                 className="process-card-offset-wrapper clickable-image-card"
                 onClick={() => setStandaloneImage({ src: '/lakbay.png', title: 'LAKBAY Mid-Fidelity Designs' })}
               >
@@ -1498,7 +1498,7 @@ function LakbayCaseStudy({ onBack, onContact, onSelectProject }) {
                 </h3>
               </div>
 
-              <div 
+              <div
                 className="process-card-offset-wrapper clickable-image-card"
                 onClick={() => setStandaloneImage({ src: '/lakbay.png', title: 'LAKBAY High-Fidelity Designs' })}
               >
@@ -1537,15 +1537,15 @@ function LakbayCaseStudy({ onBack, onContact, onSelectProject }) {
 
       {/* Gallery Image Lightbox Modal with Exclusive Gallery Arrow Navigation */}
       {previewIndex !== null && (
-        <div 
-          className="cert-modal-overlay" 
+        <div
+          className="cert-modal-overlay"
           onClick={() => setPreviewIndex(null)}
           role="dialog"
           aria-modal="true"
           aria-labelledby="image-modal-title"
         >
-          <button 
-            className="cert-modal-close" 
+          <button
+            className="cert-modal-close"
             onClick={() => setPreviewIndex(null)}
             aria-label="Close image preview"
           >
@@ -1585,9 +1585,9 @@ function LakbayCaseStudy({ onBack, onContact, onSelectProject }) {
             </div>
 
             <div className="cert-modal-body">
-              <img 
-                src={galleryImages[previewIndex].src} 
-                alt={galleryImages[previewIndex].title || "Maximized UI Screen"} 
+              <img
+                src={galleryImages[previewIndex].src}
+                alt={galleryImages[previewIndex].title || "Maximized UI Screen"}
                 className="cert-modal-img"
               />
             </div>
@@ -1597,14 +1597,14 @@ function LakbayCaseStudy({ onBack, onContact, onSelectProject }) {
 
       {/* Standalone Image Lightbox (No Gallery Navigation for Other Sections) */}
       {standaloneImage && (
-        <div 
-          className="cert-modal-overlay" 
+        <div
+          className="cert-modal-overlay"
           onClick={() => setStandaloneImage(null)}
           role="dialog"
           aria-modal="true"
         >
-          <button 
-            className="cert-modal-close" 
+          <button
+            className="cert-modal-close"
             onClick={() => setStandaloneImage(null)}
             aria-label="Close image preview"
           >
@@ -1620,9 +1620,9 @@ function LakbayCaseStudy({ onBack, onContact, onSelectProject }) {
             )}
 
             <div className="cert-modal-body">
-              <img 
-                src={standaloneImage.src} 
-                alt={standaloneImage.title || "Maximized Image"} 
+              <img
+                src={standaloneImage.src}
+                alt={standaloneImage.title || "Maximized Image"}
                 className="cert-modal-img"
               />
             </div>
@@ -1734,7 +1734,7 @@ function TripexCaseStudy({ onBack, onContact, onSelectProject }) {
                 As a UI/UX Design Intern at COMBTAS Philippines Inc., I contributed to the development and maintenance of reusable design components and documentation. Throughout my 486-hour internship, I collaborated with team members to support design consistency, component organization, and design-to-development handoff processes using Figma, Storybook, and Chromatic. This experience enhanced my skills in design systems, user interface design, and cross-functional collaboration.
               </p>
             </div>
-            <div 
+            <div
               className="ping-mockup-wrapper clickable-image-card"
               onClick={() => setStandaloneImage({ src: '/tripex.png', title: 'TRIPEX Design System Overview' })}
               title="Click to maximize picture"
@@ -1819,8 +1819,8 @@ function TripexCaseStudy({ onBack, onContact, onSelectProject }) {
           <div className="lakbay-screens-gallery">
             <div className="lakbay-gallery-grid">
               {tripexScreens.map((screen, idx) => (
-                <div 
-                  className="lakbay-gallery-card clickable-image-card" 
+                <div
+                  className="lakbay-gallery-card clickable-image-card"
                   key={screen.id}
                   onClick={() => setPreviewIndex(idx)}
                   tabIndex={0}
@@ -1857,7 +1857,7 @@ function TripexCaseStudy({ onBack, onContact, onSelectProject }) {
 
           <div className="ping-process-showcase">
             <div className="process-block">
-              <div 
+              <div
                 className="process-card-offset-wrapper clickable-image-card"
                 onClick={() => setStandaloneImage({ src: '/tripex.png', title: 'TRIPEX Certificate of Completion' })}
               >
@@ -1896,15 +1896,15 @@ function TripexCaseStudy({ onBack, onContact, onSelectProject }) {
 
       {/* Gallery Image Lightbox Modal */}
       {previewIndex !== null && (
-        <div 
-          className="cert-modal-overlay" 
+        <div
+          className="cert-modal-overlay"
           onClick={() => setPreviewIndex(null)}
           role="dialog"
           aria-modal="true"
           aria-labelledby="image-modal-title"
         >
-          <button 
-            className="cert-modal-close" 
+          <button
+            className="cert-modal-close"
             onClick={() => setPreviewIndex(null)}
             aria-label="Close image preview"
           >
@@ -1942,9 +1942,9 @@ function TripexCaseStudy({ onBack, onContact, onSelectProject }) {
             </div>
 
             <div className="cert-modal-body">
-              <img 
-                src={galleryImages[previewIndex].src} 
-                alt={galleryImages[previewIndex].title || "Maximized UI Screen"} 
+              <img
+                src={galleryImages[previewIndex].src}
+                alt={galleryImages[previewIndex].title || "Maximized UI Screen"}
                 className="cert-modal-img"
               />
             </div>
@@ -1954,14 +1954,14 @@ function TripexCaseStudy({ onBack, onContact, onSelectProject }) {
 
       {/* Standalone Image Lightbox */}
       {standaloneImage && (
-        <div 
-          className="cert-modal-overlay" 
+        <div
+          className="cert-modal-overlay"
           onClick={() => setStandaloneImage(null)}
           role="dialog"
           aria-modal="true"
         >
-          <button 
-            className="cert-modal-close" 
+          <button
+            className="cert-modal-close"
             onClick={() => setStandaloneImage(null)}
             aria-label="Close image preview"
           >
@@ -1977,9 +1977,9 @@ function TripexCaseStudy({ onBack, onContact, onSelectProject }) {
             )}
 
             <div className="cert-modal-body">
-              <img 
-                src={standaloneImage.src} 
-                alt={standaloneImage.title || "Maximized Image"} 
+              <img
+                src={standaloneImage.src}
+                alt={standaloneImage.title || "Maximized Image"}
                 className="cert-modal-img"
               />
             </div>
@@ -2233,11 +2233,11 @@ function App() {
 
   if (currentProject) {
     return (
-      <ProjectDetailPage 
-        project={currentProject} 
-        onBack={closeProject} 
-        onContact={goToContact} 
-        onSelectProject={openProject} 
+      <ProjectDetailPage
+        project={currentProject}
+        onBack={closeProject}
+        onContact={goToContact}
+        onSelectProject={openProject}
       />
     );
   }
@@ -2306,7 +2306,6 @@ function App() {
         </section>
 
         <CertificationsSection />
-
         <ContactSection />
       </main>
 
