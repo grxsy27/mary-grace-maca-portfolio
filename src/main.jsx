@@ -2316,7 +2316,7 @@ function App() {
           <div className="hero-copy">
             <p className="eyebrow">UI/UX DESIGNER · PRODUCT DESIGNER</p>
             <h1>Mary Grace<br /><em>Maca.</em></h1>
-            <p className="intro">I design thoughtful digital experiences that balance clarity, function, and visual personality.</p>
+            <p className="intro">Turning user challenges into simple experiences.</p>
             <button className="action-btn" onClick={() => scrollToId('works')}>Explore my work <ArrowUpRight size={18} /></button>
           </div>
           <div className="hero-note">
