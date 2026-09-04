@@ -45,7 +45,7 @@ const works = [
     type: 'Website Design Concept',
     year: '2024',
     description: 'A front-end UI project built with React focusing on desktop interface screens for a jewelry shopping concept.',
-    image: '/lustre.png'
+    image: '/Lustre-card.png'
   },
   {
     slug: 'lakbay',
@@ -61,7 +61,7 @@ const works = [
     type: 'UI/UX Design Internship',
     year: '2026',
     description: 'Development and maintenance of reusable design components, documentation, and handoff processes at COMBTAS Philippines Inc.',
-    image: '/tripex.png'
+    image: '/tripex-card-pic.png'
   }
 ];
 
@@ -642,36 +642,58 @@ const pingSolutions = [
     num: "1",
     title: "Emergency Alert Activation",
     desc: "Enables users to trigger instant emergency alerts with minimal interaction during high-stress situations.",
-    image: "/ping_me.png"
+    image: "/pingme-1.png"
   },
   {
     num: "2",
     title: "Real-Time Location Tracking",
     desc: "Shares real-time GPS location with registered emergency contacts to ensure swift, accurate assistance.",
-    image: "/ping_me.png"
+    image: "/pingme-2.png"
   },
   {
     num: "3",
     title: "Continuous SMS Notifications",
     desc: "Dispatches continuous SMS alerts at regular intervals to guarantee delivery without an internet connection.",
-    image: "/ping_me.png"
+    image: "/pingme-3.png"
   },
   {
     num: "4",
     title: "Family Monitoring (Shared Rooms)",
     desc: "Allows family members to create private rooms and monitor each other's live locations for enhanced safety.",
-    image: "/ping_me.png"
+    image: "/pingme-4.png"
   },
   {
     num: "5",
     title: "Geofencing for Safe Zones",
     desc: "Automatically notifies trusted guardians whenever a user enters or leaves designated safe zones.",
-    image: "/ping_me.png"
+    image: "/pingme-5.png"
   }
 ];
 
 function PingMeCaseStudy({ onBack, onContact, onSelectProject }) {
   const nextProject = works.find((w) => w.slug === 'kain') || works[1];
+  const [standaloneImage, setStandaloneImage] = useState(null);
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (standaloneImage !== null) {
+        if (e.key === 'Escape') {
+          setStandaloneImage(null);
+        }
+      }
+    };
+
+    if (standaloneImage !== null) {
+      document.body.style.overflow = 'hidden';
+      window.addEventListener('keydown', handleKeyDown);
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [standaloneImage]);
 
   return (
     <div className="ping-case-study">
@@ -690,7 +712,7 @@ function PingMeCaseStudy({ onBack, onContact, onSelectProject }) {
       <main>
         {/* Section 1: Hero */}
         <section className="ping-hero-section section-pad">
-          <div className="ping-hero-grid">
+          <div className="lakbay-hero-grid">
             <div className="ping-hero-copy">
               <p className="eyebrow">UI/UX CASE STUDY • 2026</p>
               <h1>PING <em>me.</em></h1>
@@ -701,8 +723,8 @@ function PingMeCaseStudy({ onBack, onContact, onSelectProject }) {
                 PING ME is a mobile safety application designed to enable fast and discreet emergency reporting through real-time location tracking, continuous SMS alerts, and family monitoring features, helping users stay protected during high-risk situations.
               </p>
             </div>
-            <div className="ping-mockup-wrapper">
-              <img src="/ping_me.png" alt="PING ME Mockup Overview" className="ping-mockup-img" />
+            <div className="lakbay-hero-mockup-wrapper">
+              <img src="/ping-me-here-section.png" alt="PING ME Mockup Overview" className="lakbay-hero-mockup-img" />
             </div>
           </div>
         </section>
@@ -771,9 +793,6 @@ function PingMeCaseStudy({ onBack, onContact, onSelectProject }) {
                 <div className="sol-mockup-center">
                   <div className="sol-mockup-frame">
                     <img src={sol.image} alt={sol.title} className="sol-mockup-img" />
-                    <div className="sol-mockup-overlay-tag">
-                      <span>MOCKUP PREVIEW</span>
-                    </div>
                   </div>
                 </div>
               </article>
@@ -798,8 +817,12 @@ function PingMeCaseStudy({ onBack, onContact, onSelectProject }) {
               </div>
 
               <div className="process-card-offset-wrapper">
-                <div className="process-image-frame">
-                  <img src="/ping_me.png" alt="Mid-Fidelity Wireframes Preview" className="process-img" />
+                <div className="process-image-frame process-image-frame-large">
+                  <img
+                    src="/PingMe Mid-fidelity.png"
+                    alt="PING ME Mid-Fidelity Wireframes Preview"
+                    className="process-img process-img-large"
+                  />
                 </div>
               </div>
             </div>
@@ -813,8 +836,12 @@ function PingMeCaseStudy({ onBack, onContact, onSelectProject }) {
               </div>
 
               <div className="process-card-offset-wrapper">
-                <div className="process-image-frame">
-                  <img src="/ping_me.png" alt="High-Fidelity Mobile UI Preview" className="process-img" />
+                <div className="process-image-frame process-image-frame-large">
+                  <img
+                    src="/ping-me-high-fid.png"
+                    alt="PING ME High-Fidelity Mobile UI Preview"
+                    className="process-img process-img-large"
+                  />
                 </div>
               </div>
             </div>
@@ -864,6 +891,37 @@ function PingMeCaseStudy({ onBack, onContact, onSelectProject }) {
           </a>
         </div>
       </footer>
+
+      {standaloneImage && (
+        <div
+          className="modal-overlay"
+          onClick={() => setStandaloneImage(null)}
+          role="dialog"
+          aria-modal="true"
+        >
+          <button
+            className="modal-close-btn"
+            onClick={() => setStandaloneImage(null)}
+            aria-label="Close modal"
+          >
+            <X size={24} />
+          </button>
+          <div className="modal-content standalone-modal-content" onClick={(e) => e.stopPropagation()}>
+            {standaloneImage.title && (
+              <div className="standalone-modal-header">
+                <h3>{standaloneImage.title}</h3>
+              </div>
+            )}
+            <div className="standalone-modal-body">
+              <img
+                src={standaloneImage.src}
+                alt={standaloneImage.title || "Maximized Image"}
+                className="standalone-modal-img"
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
@@ -873,31 +931,31 @@ const kainSolutions = [
     num: 1,
     title: 'AI-Driven Personalization',
     desc: 'The application personalizes meal suggestions and guidance using behavioral data without enforcing rigid diet rules.',
-    image: '/kain.png'
+    image: '/kain-1.png'
   },
   {
     num: 2,
     title: 'Simplified Food Tracking & Insights',
     desc: 'Users can log or scan food items and view clear nutritional summaries to support informed yet simple food choices.',
-    image: '/kain.png'
+    image: '/kain-2.png'
   },
   {
     num: 3,
     title: 'Mindful Eating & Habit Guidance',
     desc: 'KAIN delivers mindful-eating prompts and habit-building recommendations based on user behavior rather than restriction.',
-    image: '/kain.png'
+    image: '/kain-3.png'
   },
   {
     num: 4,
     title: 'Smart Meal Planning & Decision Support',
     desc: 'The app enables flexible meal planning and generates personalized shopping lists using available ingredients.',
-    image: '/kain.png'
+    image: '/kain-4.png'
   },
   {
     num: 5,
     title: 'Sustainability-Focused Consumption',
     desc: 'Smart storage and portion awareness features promote responsible consumption and reduced food waste aligned with SDGs.',
-    image: '/kain.png'
+    image: '/kain-5.png'
   }
 ];
 
@@ -921,7 +979,7 @@ function KainCaseStudy({ onBack, onContact, onSelectProject }) {
       <main>
         {/* Section 1: Hero */}
         <section className="ping-hero-section section-pad">
-          <div className="ping-hero-grid">
+          <div className="lakbay-hero-grid">
             <div className="ping-hero-copy">
               <p className="eyebrow">HACKATHON PROJECT • UI/UX CASE STUDY</p>
               <h1>KAIN <em>app.</em></h1>
@@ -932,8 +990,8 @@ function KainCaseStudy({ onBack, onContact, onSelectProject }) {
                 KAIN is an AI-powered nutrition and mindful-eating application designed to promote healthier food choices and responsible consumption. The project aligns with SDG 3 (Good Health and Well-Being) and SDG 12 (Responsible Consumption and Production) by encouraging sustainable eating habits through personalized insights and behavioral guidance.
               </p>
             </div>
-            <div className="ping-mockup-wrapper">
-              <img src="/kain.png" alt="KAIN Mockup Overview" className="ping-mockup-img" />
+            <div className="lakbay-hero-mockup-wrapper">
+              <img src="/kain-section1-pic.png" alt="KAIN Mockup Overview" className="lakbay-hero-mockup-img" />
             </div>
           </div>
         </section>
@@ -1002,9 +1060,6 @@ function KainCaseStudy({ onBack, onContact, onSelectProject }) {
                 <div className="sol-mockup-center">
                   <div className="sol-mockup-frame">
                     <img src={sol.image} alt={sol.title} className="sol-mockup-img" />
-                    <div className="sol-mockup-overlay-tag">
-                      <span>MOCKUP PREVIEW</span>
-                    </div>
                   </div>
                 </div>
               </article>
@@ -1029,8 +1084,12 @@ function KainCaseStudy({ onBack, onContact, onSelectProject }) {
               </div>
 
               <div className="process-card-offset-wrapper">
-                <div className="process-image-frame">
-                  <img src="/kain.png" alt="Mid-Fidelity Wireframes Preview" className="process-img" />
+                <div className="process-image-frame process-image-frame-large">
+                  <img
+                    src="/kain-mid-fidelity.png"
+                    alt="KAIN Mid-Fidelity Wireframes Preview"
+                    className="process-img process-img-large"
+                  />
                 </div>
               </div>
             </div>
@@ -1044,8 +1103,12 @@ function KainCaseStudy({ onBack, onContact, onSelectProject }) {
               </div>
 
               <div className="process-card-offset-wrapper">
-                <div className="process-image-frame">
-                  <img src="/kain.png" alt="High-Fidelity Mobile UI Preview" className="process-img" />
+                <div className="process-image-frame process-image-frame-large">
+                  <img
+                    src="/kain-high-fidelity.png"
+                    alt="KAIN High-Fidelity Mobile UI Preview"
+                    className="process-img process-img-large"
+                  />
                 </div>
               </div>
             </div>
@@ -1133,7 +1196,7 @@ const lustreSolutions = [
 ];
 
 function LustreCaseStudy({ onBack, onContact, onSelectProject }) {
-  const nextProject = works.find((w) => w.slug === 'ping-me') || works[0];
+  const nextProject = works.find((w) => w.slug === 'lakbay') || works[3];
 
   return (
     <div className="ping-case-study">
@@ -1152,7 +1215,7 @@ function LustreCaseStudy({ onBack, onContact, onSelectProject }) {
       <main>
         {/* Section 1: Hero */}
         <section className="ping-hero-section section-pad">
-          <div className="ping-hero-grid">
+          <div className="lakbay-hero-grid">
             <div className="ping-hero-copy">
               <p className="eyebrow">UI PROJECT</p>
               <h1>LUSTRE<em>.</em></h1>
@@ -1163,8 +1226,8 @@ function LustreCaseStudy({ onBack, onContact, onSelectProject }) {
                 LUSTRE is a front-end UI project built with React that focuses on implementing desktop interface screens for a jewelry shopping concept. The project emphasizes visual layout, component structure, and interface clarity without responsive behavior or backend integration.
               </p>
             </div>
-            <div className="ping-mockup-wrapper">
-              <img src="/lustre.png" alt="Lustre Mockup Overview" className="ping-mockup-img" />
+            <div className="lakbay-hero-mockup-wrapper">
+              <img src="/lustre landing page 1.png" alt="Lustre Mockup Overview" className="lakbay-hero-mockup-img" />
             </div>
           </div>
         </section>
@@ -1200,7 +1263,7 @@ function LustreCaseStudy({ onBack, onContact, onSelectProject }) {
             <div className="challenge-card-wrapper">
               <div className="challenge-card">
                 <p className="challenge-quote">
-                  How might we design a luxury e-commerce skincare experience that simplifies product discovery, provides personalized ingredient analysis based on unique skin profiles, and builds customer trust through transparent dermatological recommendations?
+                  How might we design an elegant luxury e-commerce experience for a jewelry brand that presents products with visual sophistication, simplifies collection browsing, and delivers an intuitive, high-end shopping interface for desktop users?
                 </p>
               </div>
             </div>
@@ -1477,15 +1540,13 @@ function LakbayCaseStudy({ onBack, onContact, onSelectProject }) {
                 </h3>
               </div>
 
-              <div
-                className="process-card-offset-wrapper clickable-image-card"
-                onClick={() => setStandaloneImage({ src: '/lakbay.png', title: 'LAKBAY Mid-Fidelity Designs' })}
-              >
-                <div className="process-image-frame">
-                  <img src="/lakbay.png" alt="Mid-Fidelity Wireframes Preview" className="process-img" />
-                  <div className="screen-maximize-btn">
-                    <ZoomIn size={18} />
-                  </div>
+              <div className="process-card-offset-wrapper">
+                <div className="process-image-frame process-image-frame-large">
+                  <img
+                    src="/lakbay-mid-fi.png"
+                    alt="LAKBAY Mid-Fidelity Wireframes Preview"
+                    className="process-img process-img-large"
+                  />
                 </div>
               </div>
             </div>
@@ -1498,15 +1559,13 @@ function LakbayCaseStudy({ onBack, onContact, onSelectProject }) {
                 </h3>
               </div>
 
-              <div
-                className="process-card-offset-wrapper clickable-image-card"
-                onClick={() => setStandaloneImage({ src: '/lakbay.png', title: 'LAKBAY High-Fidelity Designs' })}
-              >
-                <div className="process-image-frame">
-                  <img src="/lakbay.png" alt="High-Fidelity Mobile UI Preview" className="process-img" />
-                  <div className="screen-maximize-btn">
-                    <ZoomIn size={18} />
-                  </div>
+              <div className="process-card-offset-wrapper">
+                <div className="process-image-frame process-image-frame-large">
+                  <img
+                    src="/lakbay-high-fi.png"
+                    alt="LAKBAY High-Fidelity Mobile UI Preview"
+                    className="process-img process-img-large"
+                  />
                 </div>
               </div>
             </div>
@@ -1656,10 +1715,15 @@ function LakbayCaseStudy({ onBack, onContact, onSelectProject }) {
 }
 
 const tripexScreens = [
-  { id: 1, label: 'Design System & Component Library', image: '/tripex.png' },
-  { id: 2, label: 'Storybook Component Documentation', image: '/tripex.png' },
-  { id: 3, label: 'Chromatic Visual Regression Testing', image: '/tripex.png' },
-  { id: 4, label: 'Design-to-Dev Handoff & Governance', image: '/tripex.png' }
+  { id: 1, label: 'Buttons Component', image: '/Buttons.png' },
+  { id: 2, label: 'Email Template (Redesigned)', image: '/Email Template (RE-DESIGNED).jpeg' },
+  { id: 3, label: 'Color Palette', image: '/PALETTE.png' },
+  { id: 4, label: 'Sidebars Component', image: '/Side bars.png' },
+  { id: 5, label: 'Skeleton Loader', image: '/Skeleton.png' },
+  { id: 6, label: 'Storybook - Application Bar', image: '/Storybook-Applicaton Bar.png' },
+  { id: 7, label: 'Storybook - Navigation Bar', image: '/Storybook-Navigation Bar.png' },
+  { id: 8, label: 'Storybook - Textfield', image: '/Storybook-Textfield.png' },
+  { id: 9, label: 'Typography Guidelines', image: '/Typography.png' }
 ];
 
 function TripexCaseStudy({ onBack, onContact, onSelectProject }) {
@@ -1723,7 +1787,7 @@ function TripexCaseStudy({ onBack, onContact, onSelectProject }) {
       <main>
         {/* Section 1: Hero */}
         <section className="ping-hero-section section-pad">
-          <div className="ping-hero-grid">
+          <div className="lakbay-hero-grid">
             <div className="ping-hero-copy">
               <p className="eyebrow">UI/UX DESIGN INTERNSHIP • 2026</p>
               <h1>TRIPEX<em>.</em></h1>
@@ -1734,15 +1798,8 @@ function TripexCaseStudy({ onBack, onContact, onSelectProject }) {
                 As a UI/UX Design Intern at COMBTAS Philippines Inc., I contributed to the development and maintenance of reusable design components and documentation. Throughout my 486-hour internship, I collaborated with team members to support design consistency, component organization, and design-to-development handoff processes using Figma, Storybook, and Chromatic. This experience enhanced my skills in design systems, user interface design, and cross-functional collaboration.
               </p>
             </div>
-            <div
-              className="ping-mockup-wrapper clickable-image-card"
-              onClick={() => setStandaloneImage({ src: '/tripex.png', title: 'TRIPEX Design System Overview' })}
-              title="Click to maximize picture"
-            >
-              <img src="/tripex.png" alt="TRIPEX Mockup Overview" className="ping-mockup-img" />
-              <div className="screen-maximize-btn">
-                <ZoomIn size={18} />
-              </div>
+            <div className="lakbay-hero-mockup-wrapper">
+              <img src="/tripex-card-pic.png" alt="TRIPEX Mockup Overview" className="lakbay-hero-mockup-img" />
             </div>
           </div>
         </section>
@@ -1857,15 +1914,13 @@ function TripexCaseStudy({ onBack, onContact, onSelectProject }) {
 
           <div className="ping-process-showcase">
             <div className="process-block">
-              <div
-                className="process-card-offset-wrapper clickable-image-card"
-                onClick={() => setStandaloneImage({ src: '/tripex.png', title: 'TRIPEX Certificate of Completion' })}
-              >
-                <div className="process-image-frame">
-                  <img src="/tripex.png" alt="TRIPEX Certificate of Completion" className="process-img" />
-                  <div className="screen-maximize-btn">
-                    <ZoomIn size={18} />
-                  </div>
+              <div className="process-card-offset-wrapper">
+                <div className="process-image-frame process-image-frame-large">
+                  <img
+                    src="/cert of completion.jpg"
+                    alt="TRIPEX Certificate of Completion"
+                    className="process-img process-img-large"
+                  />
                 </div>
               </div>
             </div>
@@ -2269,7 +2324,7 @@ function App() {
             <strong>MANILA, PHILIPPINES</strong>
             <span className="line"></span>
             <span>AVAILABLE FOR</span>
-            <strong>PRODUCT · UI/UX</strong>
+            <strong>PRODUCT DESIGNER · UI/UX</strong>
           </div>
         </section>
 
